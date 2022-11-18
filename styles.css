@@ -1,0 +1,116 @@
+*::before,
+*::after,
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  --primary-clr-1: #eae7dc;
+  --primary-clr-2: #d8c3a5;
+  --secondary-clr-1: #8e8d8a;
+  --secondary-clr-2: #e98074;
+  --secondary-clr-3: #e85a4f;
+}
+
+body {
+  color: var(--secondary-clr-3);
+  background-color: var(--primary-clr-1);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.left-side,
+.right-side {
+  width: 20vw;
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0.2rem 1rem;
+  background-color: var(--primary-clr-2);
+  border: solid var(--secondary-clr-1) 0.2rem;
+  border-radius: 1rem;
+}
+
+.main-header {
+  font-size: 3rem;
+}
+
+.secondary-header {
+  margin: 0.5rem;
+  font-size: 2rem;
+}
+
+#colorpicker {
+  padding: 0.25rem 0.25rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 1rem;
+  background-color: var(--primary-clr-1);
+}
+
+.divider {
+  width: 60vw;
+  height: 90%;
+  text-align: center;
+}
+
+#sketch-container {
+  height: 90%;
+  border: solid 1px var(--secondary-clr-1);
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  grid-template-rows: repeat(16, 1fr);
+}
+
+#size-selector {
+  font-size: 0.9rem;
+  padding: 0.5rem 1.5rem;
+  margin-top: 1rem;
+  color: var(--secondary-clr-3);
+  border: solid 2px;
+  border-radius: 1rem;
+  background-color: var(--primary-clr-1);
+}
+
+.pixel {
+  border: solid 1px var(--secondary-clr-1);
+}
+
+#eraser {
+  background-color: var(--primary-clr-1);
+}
+
+#red {
+  background-color: hsl(0, 100%, 50%);
+}
+
+#yellow {
+  background-color: hsl(60, 100%, 50%);
+}
+
+#blue {
+  background-color: hsl(240, 100%, 50%);
+}
+
+#orange {
+  background-color: hsl(39, 100%, 50%);
+}
+
+#green {
+  background-color: hsl(120, 100%, 25%);
+}
+
+#violet {
+  background-color: hsl(300, 76%, 72%);
+}
