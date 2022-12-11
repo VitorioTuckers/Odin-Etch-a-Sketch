@@ -60,9 +60,21 @@ function paintPixel(clrSelection) {
   }
 }
 
+function paintPixelTouch(clrSelection) {
+  // Add a single event listener for the 'touchmove' event on the entire grid
+  container.addEventListener("touchmove", event => {
+    // Check if the target of the event is a pixel
+    if (event.target.classList.contains("pixel")) {
+      // Set the background color of the pixel to the selected color
+      event.target.style.backgroundColor = clrSelection;
+    }
+  });
+}
+
 colorSelector.addEventListener("change", () => {
   let clrSelection = colorSelector.value;
   paintPixel(clrSelection);
+  paintPixelTouch(clrSelection);
 });
 
 eraser.addEventListener("click", () => {
@@ -88,53 +100,9 @@ function gridSizeSelector(input) {
     container.append(div);
   }
   paintPixel(colorSelector.value);
+  paintPixelTouch(colorSelector.value);
 }
-
-/* for (let i = 0; i < preset.length; i++) {
-  preset[i].addEventListener("click", () => {
-    sizePicker(presets[i]);
-  });
-} */
-
-/* function color(clr) {
-  for (let i = 0; i < pixel.length; i++) {
-    pixel[i].addEventListener("mouseover", () => {
-      pixel[i].style.backgroundColor = clr;
-    });
-  }
-}
- */
-
-/* function color(clr) {
-  let isDown;
-  for (let i = 0; i < pixel.length; i++) {
-    pixel[i].addEventListener("mousedown", () => {
-      isDown = true;
-    });
-    pixel[i].addEventListener("mouseup", () => {
-      isDown = false;
-    });
-    pixel[i].addEventListener("mouseover", () => {
-      isDown ? (pixel[i].style.backgroundColor = clr) : (isDown = false);
-    });
-  }
-} */
 
 /* `rgb(${Math.floor(Math.random() * 256)},${Math.floor(
     Math.random() * 256
   )},${Math.floor(Math.random() * 256)})` */
-
-/* function paintPixel(clr) {
-    let isDown;
-    for (let i = 0; i < pixel.length; i++) {
-      pixel[i].addEventListener("mousedown", () => {
-        isDown = true;
-      });
-      pixel[i].addEventListener("mouseup", () => {
-        isDown = false;
-      });
-      pixel[i].addEventListener("mouseover", () => {
-        isDown ? (pixel[i].style.backgroundColor = clr) : (isDown = false);
-      });
-    }
-  } */
