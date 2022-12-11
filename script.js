@@ -1,39 +1,73 @@
 const container = document.getElementById("sketch-container");
-const pixel = document.getElementsByClassName("pixel");
-const sizeSelector = document.getElementById("size-selector");
+const pixels = document.getElementsByClassName("pixel");
 const colorSelector = document.getElementById("colorpicker");
-const preset = document.getElementsByClassName("preset");
+const eraser = document.getElementById("eraser");
+const slider = document.getElementById("slider");
+const clearGrid = document.getElementById("clear");
+
+gridSizeSelector(48);
 
 const presets = {
-  0: 16,
-  1: 32,
-  2: 48,
-  3: 64,
-  4: 80,
-  5: 96,
+  1: 4,
+  2: 8,
+  3: 12,
+  4: 16,
+  5: 20,
+  6: 24,
+  7: 28,
+  8: 32,
+  9: 36,
+  10: 40,
+  11: 44,
+  12: 48,
+  13: 52,
+  14: 56,
+  15: 60,
+  16: 64,
+  17: 68,
+  18: 72,
+  19: 76,
+  20: 80,
+  21: 84,
+  22: 88,
+  23: 92,
+  24: 96,
+  25: 100,
 };
 
-sizePicker(16);
+slider.addEventListener("change", () => {
+  gridSizeSelector(presets[Number(slider.value)]);
+});
 
-colorSelector.addEventListener("mouseout", () => {
-  let selection = colorSelector.value;
-  for (let i = 0; i < pixel.length; i++) {
-    pixel[i].addEventListener("mouseover", () => {
-      pixel[i].style.backgroundColor = selection;
-    });
+clearGrid.addEventListener("click", () => {
+  for (let pixel of pixels) {
+    pixel.style.backgroundColor = "#eae7dc";
   }
 });
 
-for (let i = 0; i < preset.length; i++) {
-  preset[i].addEventListener("click", () => {
-    sizePicker(presets[i]);
-  });
+function paintPixel(clrSelection) {
+  let isDown;
+  for (let pixel of pixels) {
+    pixel.addEventListener("mousedown", () => {
+      isDown = true;
+    });
+    pixel.addEventListener("mouseup", () => {
+      isDown = false;
+    });
+    pixel.addEventListener("mouseover", () => {
+      isDown ? (pixel.style.backgroundColor = clrSelection) : (isDown = false);
+    });
+  }
 }
 
-sizeSelector.addEventListener("click", () => {
-  let input = parseInt(prompt("Pick a size between 1 and 100"));
-  let size = input <= 100 && input >= 1 ? input : 16;
-  sizePicker(size);
+colorSelector.addEventListener("change", () => {
+  let clrSelection = colorSelector.value;
+  paintPixel(clrSelection);
+});
+
+eraser.addEventListener("click", () => {
+  let clrSelection = eraser.value;
+  paintPixel(clrSelection);
 });
 
 function gridGenerator(input) {
@@ -42,15 +76,65 @@ function gridGenerator(input) {
   return input * input;
 }
 
-function sizePicker(int) {
+function gridSizeSelector(input) {
   let child = container.lastElementChild;
   while (child) {
     container.removeChild(child);
     child = container.lastElementChild;
   }
-  for (let i = 1; i <= gridGenerator(int); i++) {
+  for (let i = 1; i <= gridGenerator(input); i++) {
     let div = document.createElement("div");
     div.classList.add("pixel");
     container.append(div);
   }
+  paintPixel(colorSelector.value);
 }
+
+/* for (let i = 0; i < preset.length; i++) {
+  preset[i].addEventListener("click", () => {
+    sizePicker(presets[i]);
+  });
+} */
+
+/* function color(clr) {
+  for (let i = 0; i < pixel.length; i++) {
+    pixel[i].addEventListener("mouseover", () => {
+      pixel[i].style.backgroundColor = clr;
+    });
+  }
+}
+ */
+
+/* function color(clr) {
+  let isDown;
+  for (let i = 0; i < pixel.length; i++) {
+    pixel[i].addEventListener("mousedown", () => {
+      isDown = true;
+    });
+    pixel[i].addEventListener("mouseup", () => {
+      isDown = false;
+    });
+    pixel[i].addEventListener("mouseover", () => {
+      isDown ? (pixel[i].style.backgroundColor = clr) : (isDown = false);
+    });
+  }
+} */
+
+/* `rgb(${Math.floor(Math.random() * 256)},${Math.floor(
+    Math.random() * 256
+  )},${Math.floor(Math.random() * 256)})` */
+
+/* function paintPixel(clr) {
+    let isDown;
+    for (let i = 0; i < pixel.length; i++) {
+      pixel[i].addEventListener("mousedown", () => {
+        isDown = true;
+      });
+      pixel[i].addEventListener("mouseup", () => {
+        isDown = false;
+      });
+      pixel[i].addEventListener("mouseover", () => {
+        isDown ? (pixel[i].style.backgroundColor = clr) : (isDown = false);
+      });
+    }
+  } */

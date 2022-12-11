@@ -15,25 +15,37 @@
   </head>
   <body>
     <main class="container">
-      <div class="left-side">
-        <h2 class="secondary-header">COLOR PICKER</h2>
-        <input type="color" id="colorpicker" value="#0000ff" />
-      </div>
-      <div class="divider">
+      <div class="sketch-card">
+        <h1 class="card-header">TUCKER'S ETCH-A-SKETCH</h1>
         <article id="sketch-container"></article>
-        <h1 class="main-header">TUCKER'S ETCH-A-SKETCH</h1>
-      </div>
-      <div class="right-side">
-        <h2 class="secondary-header">SIZE SELECTOR</h2>
-        <input id="size-selector" type="button" value="Choose a size!" />
-        <p>or select a preset</p>
-        <div class="btn-container">
-          <button class="preset">16x16</button>
-          <button class="preset">32x32</button>
-          <button class="preset">48x48</button>
-          <button class="preset">64x64</button>
-          <button class="preset">80x80</button>
-          <button class="preset">96x96</button>
+        <div class="menu">
+          <div class="box">
+            <label for="colorpicker">COLOR</label>
+            <input type="color" id="colorpicker" value="#e85a4f" />
+          </div>
+          <div class="box">
+            <label for="rainbow">RAINBOW</label>
+            <button id="rainbow"></button>
+          </div>
+          <div class="box">
+            <label for="slider">SIZE SELECTOR</label>
+            <input
+              type="range"
+              min="1"
+              max="25"
+              value="12"
+              class="slider"
+              id="slider"
+            />
+          </div>
+          <div class="box">
+            <label for="clear">CLEAR</label>
+            <button id="clear"></button>
+          </div>
+          <div class="box">
+            <label for="eraser">ERASER</label>
+            <button id="eraser" value="#eae7dc"></button>
+          </div>
         </div>
       </div>
     </main>
