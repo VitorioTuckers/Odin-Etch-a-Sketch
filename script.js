@@ -63,7 +63,6 @@ function paintPixel(clrSelection) {
 colorSelector.addEventListener("change", () => {
   let clrSelection = colorSelector.value;
   paintPixel(clrSelection);
-  paintPixelTouch(clrSelection);
 });
 
 eraser.addEventListener("click", () => {
@@ -89,7 +88,6 @@ function gridSizeSelector(input) {
     container.append(div);
   }
   paintPixel(colorSelector.value);
-  paintPixelTouch(colorSelector.value);
 }
 
 /* `rgb(${Math.floor(Math.random() * 256)},${Math.floor(
