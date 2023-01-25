@@ -1,12 +1,12 @@
 # Odin-Etch-a-Sketch
 
-This is a solution for the [Odin-Project] (https://www.theodinproject.com/) Etch-a-Sketch challenge in their Foundations course.
+This is a solution for the [Odin-Project](https://www.theodinproject.com/) Etch-a-Sketch challenge in their Foundations course.
 
 ## How to run it
 
 Open the following link on your preferred browser:
 
-[Etch-a-Sketch] (https://vitoriotuckers.github.io/Odin-Etch-a-Sketch/)
+[Etch-a-Sketch](https://vitoriotuckers.github.io/Odin-Etch-a-Sketch/)
 
 ## Description
 
