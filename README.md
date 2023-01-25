@@ -6,7 +6,7 @@ This is a solution for the [Odin-Project] (https://www.theodinproject.com/) Etch
 
 Open the following link on your preferred browser:
 
-[Etch-a-Sketch] ()
+[Etch-a-Sketch] (https://vitoriotuckers.github.io/Odin-Etch-a-Sketch/)
 
 ## Description
 
