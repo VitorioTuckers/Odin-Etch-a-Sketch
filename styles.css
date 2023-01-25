@@ -1,15 +1,14 @@
 *::before,
 *::after,
 * {
-  font-family: "Bungee", cursive;
+  font-family: 'Bungee', cursive;
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  --primary-clr-1: #eae7dc;
-  --primary-clr-2: #d8c3a5;
-  --secondary-clr-1: #8e8d8a;
-  --secondary-clr-2: #e98074;
-  --secondary-clr-3: #e85a4f;
+  --sunglow-yellow: #ffd43a;
+  --bakers-chocolate: #582c12;
+  --orchid-purple: #d668e3;
+  color: var(--bakers-chocolate);
 }
 
 body {
@@ -18,8 +17,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: var(--secondary-clr-3);
-  background-color: var(--primary-clr-2);
+  background: rgb(255, 212, 58);
+  background: radial-gradient(
+    circle,
+    rgba(255, 212, 58, 1) 70%,
+    rgba(88, 44, 18, 1) 100%
+  );
 }
 
 .container {
@@ -40,14 +43,14 @@ body {
   align-items: center;
 }
 
-#sketch-container {
+#canvas {
   width: 70vh;
   height: 70vh;
-  border: solid 2px var(--secondary-clr-3);
   display: grid;
   grid-template-columns: repeat(16, 1fr);
   grid-template-rows: repeat(16, 1fr);
-  background-color: var(--primary-clr-1);
+  background-color: #ffffff;
+  border: solid var(--bakers-chocolate);
 }
 
 .pixel {
@@ -55,16 +58,22 @@ body {
 }
 
 .menu {
+  color: var(--primary-clr-1);
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   height: 7rem;
   width: 70vh;
   margin-top: 1rem;
-  border: solid 2px var(--secondary-clr-3);
+  background: rgb(88, 44, 18);
+  background: linear-gradient(
+    0deg,
+    rgba(88, 44, 18, 1) 0%,
+    rgba(253, 187, 45, 1) 30%
+  );
 }
 
-.box {
+.btn-box {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -77,88 +86,60 @@ label {
 
 .slider {
   appearance: none;
-  background-color: var(--secondary-clr-2);
-  border: solid 1px var(--secondary-clr-3);
 }
 
 .slider::-webkit-slider-thumb {
   appearance: none;
-  width: 1rem;
-  height: 1rem;
-  background: var(--primary-clr-1);
-  cursor: pointer;
-  border: solid 1px var(--secondary-clr-3);
-}
-
-#eraser,
-#colorpicker,
-#rainbow,
-#clear {
-  width: 3rem;
-  height: 3rem;
-  border: none;
-  background-color: transparent;
+  width: 1.2rem;
+  height: 1.2rem;
   cursor: pointer;
 }
 
-#eraser,
-#rainbow,
-#clear {
-  background-color: var(--primary-clr-1);
-  width: 2.6rem;
-  height: 2.6rem;
-}
-
-#rainbow,
-#clear {
-  background-color: var(--secondary-clr-2);
-}
-
-#colorpicker::-webkit-color-swatch,
-#eraser,
-#rainbow,
-#clear {
-  border: solid 2px var(--secondary-clr-3);
+#canvas,
+.menu,
+.slider,
+.menu-btn {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .menu,
-#eraser,
+.slider {
+  border-radius: 2rem;
+  border: solid var(--bakers-chocolate);
+}
+
+.menu-btn,
+#colorpicker {
+  width: 2.5rem;
+  height: 2.5rem;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+
+.menu-btn {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+.menu-btn:active {
+  background-color: var(--bakers-chocolate);
+  border: solid var(--orchid-purple);
+}
+
+.menu-btn,
 #colorpicker::-webkit-color-swatch,
-.slider,
-.slider::-webkit-slider-thumb,
-#rainbow,
-#clear {
-  border-radius: 4rem;
+.slider::-webkit-slider-thumb {
+  border: solid 3px var(--bakers-chocolate);
+  background-color: var(--orchid-purple);
+  border-radius: 50%;
 }
 
 .pixel {
   user-select: none;
 }
 
-@media screen and (max-width: 550px) {
-  #sketch-container {
-    width: 400px;
-    height: 400px;
-  }
-
-  .menu {
-    width: 80vw;
-  }
-
-  #eraser,
-  #colorpicker,
-  #rainbow,
-  #clear {
-    width: 1.7rem;
-    height: 1.7rem;
-  }
-
-  label {
-    font-size: 0.6rem;
-  }
-}
-
-@media screen and (max-width: 620px), screen and (max-height: 600px) {
+@media screen and (max-width: 630px), screen and (max-height: 600px) {
   * {
     font-size: 0.8rem;
   }
@@ -167,7 +148,7 @@ label {
     font-size: 1.25rem;
   }
 
-  #sketch-container {
+  #canvas {
     width: 300px;
     height: 300px;
   }
@@ -176,12 +157,10 @@ label {
     width: 300px;
   }
 
-  #eraser,
-  #colorpicker,
-  #rainbow,
-  #clear {
-    width: 1.7rem;
-    height: 1.7rem;
+  .menu-btn,
+  #colorpicker {
+    width: 2rem;
+    height: 2rem;
   }
 
   label {

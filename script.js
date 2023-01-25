@@ -1,11 +1,10 @@
-const container = document.getElementById("sketch-container");
-const pixels = document.getElementsByClassName("pixel");
-const colorSelector = document.getElementById("colorpicker");
-const eraser = document.getElementById("eraser");
-const slider = document.getElementById("slider");
-const clearGrid = document.getElementById("clear");
-
-gridSizeSelector(48);
+const canvas = document.getElementById('canvas');
+const pixels = document.getElementsByClassName('pixel');
+const colorSelector = document.getElementById('colorpicker');
+const eraser = document.getElementById('eraser');
+const slider = document.getElementById('slider');
+const clearGrid = document.getElementById('clear');
+const rainbow = document.getElementById('rainbow');
 
 const presets = {
   1: 4,
@@ -35,61 +34,75 @@ const presets = {
   25: 100,
 };
 
-slider.addEventListener("change", () => {
+gridSizeSelector(presets[Number(slider.value)]);
+
+slider.addEventListener('change', () => {
   gridSizeSelector(presets[Number(slider.value)]);
 });
 
-clearGrid.addEventListener("click", () => {
+function rgbValue() {
+  return Math.floor(Math.random() * 256);
+}
+
+clearGrid.addEventListener('click', () => {
   for (let pixel of pixels) {
-    pixel.style.backgroundColor = "#eae7dc";
+    pixel.style.backgroundColor = '#ffffff';
   }
 });
 
 function paintPixel(clrSelection) {
   let isDown;
   for (let pixel of pixels) {
-    pixel.addEventListener("mousedown", () => {
+    pixel.addEventListener('mousedown', () => {
       isDown = true;
     });
-    pixel.addEventListener("mouseup", () => {
+    pixel.addEventListener('mouseup', () => {
       isDown = false;
     });
-    pixel.addEventListener("mouseover", () => {
-      isDown ? (pixel.style.backgroundColor = clrSelection) : (isDown = false);
+    pixel.addEventListener('mouseover', () => {
+      if (clrSelection === 'rainbow') {
+        isDown
+          ? (pixel.style.backgroundColor = `rgb(${rgbValue()},${rgbValue()},${rgbValue()})`)
+          : (isDown = false);
+      } else {
+        isDown
+          ? (pixel.style.backgroundColor = clrSelection)
+          : (isDown = false);
+      }
     });
   }
 }
 
-colorSelector.addEventListener("change", () => {
+colorSelector.addEventListener('change', () => {
   let clrSelection = colorSelector.value;
   paintPixel(clrSelection);
 });
 
-eraser.addEventListener("click", () => {
+eraser.addEventListener('click', () => {
   let clrSelection = eraser.value;
   paintPixel(clrSelection);
 });
 
+rainbow.addEventListener('click', () => {
+  paintPixel('rainbow');
+});
+
 function gridGenerator(input) {
-  container.style.gridTemplateColumns = `repeat(${input}, 1fr)`;
-  container.style.gridTemplateRows = `repeat(${input}, 1fr)`;
+  canvas.style.gridTemplateColumns = `repeat(${input}, 1fr)`;
+  canvas.style.gridTemplateRows = `repeat(${input}, 1fr)`;
   return input * input;
 }
 
 function gridSizeSelector(input) {
-  let child = container.lastElementChild;
+  let child = canvas.lastElementChild;
   while (child) {
-    container.removeChild(child);
-    child = container.lastElementChild;
+    canvas.removeChild(child);
+    child = canvas.lastElementChild;
   }
   for (let i = 1; i <= gridGenerator(input); i++) {
-    let div = document.createElement("div");
-    div.classList.add("pixel");
-    container.append(div);
+    let div = document.createElement('div');
+    div.classList.add('pixel');
+    canvas.append(div);
   }
   paintPixel(colorSelector.value);
 }
-
-/* `rgb(${Math.floor(Math.random() * 256)},${Math.floor(
-    Math.random() * 256
-  )},${Math.floor(Math.random() * 256)})` */
